@@ -14,6 +14,7 @@ public class Slingshot : MonoBehaviour {
 	public bool aimingMode;
 	public Rigidbody rb;
 
+
 	// Use this for initialization
 	void Awake() 
 	{
@@ -21,9 +22,12 @@ public class Slingshot : MonoBehaviour {
 		launchPoint = launchPointTrans.gameObject;
 		launchPoint.SetActive (false);
 		launchPos = launchPointTrans.position;
-		rb = prefabProjectile.GetComponent <Rigidbody> ();
 	}
 
+	void Start ()
+	{
+		rb = prefabProjectile.GetComponent <Rigidbody> ();
+	}
 	void OnMouseEnter () 
 	{
 		print ("Slingshot:OnMouseEnter()");

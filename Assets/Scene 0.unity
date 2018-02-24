@@ -406,7 +406,7 @@ Halo:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 590214464}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Color:
     serializedVersion: 2
     rgba: 4286611584
@@ -1005,7 +1005,7 @@ MonoBehaviour:
   launchPoint: {fileID: 590214464}
   prefabProjectile: {fileID: 1828717995201722, guid: 5d030ba156722b74ab3e8112ce21fea3,
     type: 2}
-  velocityMult: 30
+  velocityMult: 10
   _________________________: 0
   launchPos: {x: 0, y: 0, z: 0}
   projectile: {fileID: 0}

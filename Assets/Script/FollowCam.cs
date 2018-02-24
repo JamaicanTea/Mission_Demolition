@@ -43,4 +43,27 @@ public class FollowCam : MonoBehaviour {
 		cam.orthographicSize = destination.y + 10;
 			
 	}
+
+	void FixedUpdate ()
+	{
+		Vector3 destination;
+		//if there is no poi, return to p: 0,0,0
+		if (poi ==null)
+		{
+			destination = Vector3.zero;
+		}
+		else {
+			//get position of poi
+			destination = poi.transform.position;
+			//if poi = projectile, check to see if it's at rest
+			if (poi.tag == "Projectile")
+			{
+				//return to default view
+				poi = null;
+				//in the next update
+				return;
+			}
+				
+	}
+}
 }
