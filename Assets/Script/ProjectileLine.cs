@@ -36,11 +36,21 @@ public class ProjectileLine : MonoBehaviour {
 			}
 		}
 	}
+	public void Clear()
+	{
+		if (_poi != null) 
+		{
+			//when_poi is set to something new, it resets everything
+			line.enabled = false;
+			points = new List<Vector3> ();
+			AddPoint ();
+		}
+	}
 	public void AddPoint()
 	{
 		//adds point in the line
 		Vector3 pt = _poi.transform.position;
-		if (points.Count > 0 && (pt- lastPoint))
+		if (points.Count > 0 && (pt- lastPoint).magnitude < minDist)
 		{
 			//if the point isnt far enough from last point, return
 			return;
@@ -78,6 +88,7 @@ public class ProjectileLine : MonoBehaviour {
 				//if there are no points, returns vector3.zero
 				return (Vector3.zero);
 			}
+			return (points[points.Count-1]);
 		}
 	}
 
@@ -93,12 +104,18 @@ public class ProjectileLine : MonoBehaviour {
 			else
 			{
 				return;
-				//if no poi found, then re
+				//if no poi found, then return
 			}
 		}
 		else
 		{
-			return;
+			return;//if no poi found, then return
+		}
+		//if poi is present, it's loc is added every fix update
+		AddPoint();
+		if (poi.GetComponent<Rigidbody>().IsSleeping ()) 
+		{
+			poi = null;
 		}
 	}
 }

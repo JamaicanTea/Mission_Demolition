@@ -21,6 +21,29 @@ public class FollowCam : MonoBehaviour {
 		S = this;
 		camZ = this.transform.position.z;
 	}
+	void FixedUpdate ()
+	{
+		Vector3 destination;
+		//if there is no poi, return to p: 0,0,0
+		if (poi == null) {
+			destination = Vector3.zero;
+		} else {
+			//get position of poi
+			destination = poi.transform.position;
+			//if poi = projectile, check to see if it's at rest
+			if (poi.tag == "Projectile") {
+				if (poi.GetComponent<Rigidbody> ().IsSleeping ()) {
+					Debug.Log (poi.GetComponent<Rigidbody> ().IsSleeping ());
+					//return to default view
+					poi = null;
+					//in the next update
+					return;	
+				}
+
+			}
+
+		}
+	}
 
 	void Update () 
 	{
@@ -42,31 +65,5 @@ public class FollowCam : MonoBehaviour {
 		this.cam.GetComponent <Camera> ().orthographicSize = destination.y + 10;
 			
 	}
-
-	void FixedUpdate ()
-	{
-		Vector3 destination;
-		//if there is no poi, return to p: 0,0,0
-		if (poi ==null)
-		{
-			destination = Vector3.zero;
-		}
-		else {
-			//get position of poi
-			destination = poi.transform.position;
-			//if poi = projectile, check to see if it's at rest
-			if (poi.tag == "Projectile")
-			{
-				if(poi.GetComponent<Rigidbody>().IsSleeping()){
-					Debug.Log (poi.GetComponent<Rigidbody> ().IsSleeping ());
-					//return to default view
-					poi = null;
-					//in the next update
-					return;	
-				}
 			
-			}
-				
-	}
-}
 }
