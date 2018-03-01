@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour {
 	//unity inspector fields
+	static public Slingshot S;
 	public GameObject launchPoint;
 	public GameObject prefabProjectile;
 	public float velocityMult = 4f;
@@ -21,6 +22,7 @@ public class Slingshot : MonoBehaviour {
 		launchPoint = launchPointTrans.gameObject;
 		launchPoint.SetActive (false);
 		launchPos = launchPointTrans.position;
+		S = this;
 	}
 		
 	void OnMouseEnter () 

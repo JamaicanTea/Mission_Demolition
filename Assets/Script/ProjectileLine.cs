@@ -85,7 +85,20 @@ public class ProjectileLine : MonoBehaviour {
 	{
 		if (poi == null)
 		{
-			
+			//if there is no poi, search for one
+			if (FollowCam.S.poi != null)
+			{
+				poi = FollowCam.S.poi;
+			}
+			else
+			{
+				return;
+				//if no poi found, then re
+			}
+		}
+		else
+		{
+			return;
 		}
 	}
 }
