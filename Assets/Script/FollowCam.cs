@@ -20,7 +20,6 @@ public class FollowCam : MonoBehaviour {
 	{
 		S = this;
 		camZ = this.transform.position.z;
-		cam = GetComponent <Camera> ();
 	}
 
 	void Update () 
@@ -40,7 +39,7 @@ public class FollowCam : MonoBehaviour {
 		//set camera to destination
 		transform.position = destination;
 		//setting ortographicSize of camera to keep ground in view
-		cam.orthographicSize = destination.y + 10;
+		this.cam.GetComponent <Camera> ().orthographicSize = destination.y + 10;
 			
 	}
 
@@ -58,10 +57,14 @@ public class FollowCam : MonoBehaviour {
 			//if poi = projectile, check to see if it's at rest
 			if (poi.tag == "Projectile")
 			{
-				//return to default view
-				poi = null;
-				//in the next update
-				return;
+				if(poi.GetComponent<Rigidbody>().IsSleeping()){
+					Debug.Log (poi.GetComponent<Rigidbody> ().IsSleeping ());
+					//return to default view
+					poi = null;
+					//in the next update
+					return;	
+				}
+			
 			}
 				
 	}
